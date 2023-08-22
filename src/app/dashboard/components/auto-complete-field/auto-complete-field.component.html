@@ -1,0 +1,30 @@
+<section class="w-100">
+<div>
+  <mat-label class="form-label" data-testid="mabl-filter-label">{{label}}</mat-label>
+</div>
+<mat-form-field class="fields">
+      <mat-chip-grid #chipGrid >
+        <mat-chip-row  *ngFor="let value of selectedValues" (removed)="removeSiteData(value)">
+          {{value}}
+          <button matChipRemove >
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      <input [placeholder]="selectedValues.length < 1 ? placeholder :'' " 
+        #filterInput
+        #autocompleteTrigger="matAutocompleteTrigger" 
+        [formControl]="fieldName"
+        [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addSiteData($event.value)"/>
+    </mat-chip-grid>
+
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedSiteData($event.option.viewValue)">
+        <mat-option *ngFor="let data of filteredValue | async" [value]="data" >
+            <mat-checkbox color="primary" style="padding: 0 12px;"
+            [checked]="selectedValues.indexOf(data) >= 0">  {{data}} </mat-checkbox>  
+        </mat-option>
+      </mat-autocomplete>
+</mat-form-field>
+</section>

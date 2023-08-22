@@ -1,0 +1,25 @@
+<mat-dialog-content class="user-preferences-dialog-content">
+    <h2 class="fw-bold" data-testid="mabl-my-account-label">{{ 'My Account' | translate }}</h2>
+    <hr class="line"/>
+    <h3 data-testid="mabl-preferences-label">{{'Preferences' | translate}}</h3>
+    <div class="user-info">
+        <p class="fw-bold" data-testid="mabl-current-user-label">{{'CURRENT USER' | translate}}</p> {{ displayName }}
+    </div>
+    <div class="language mb-5">
+        <p class="fw-bold" data-testid="mabl-language-label">{{'LANGUAGE' | translate}}</p>
+        <mat-form-field appearance="fill">
+            <mat-label>{{'Select Language' | translate}}</mat-label>
+            <mat-select data-testid="mabl-select-language-dropdown" [(ngModel)]="selectedLanguage" (selectionChange)="onApply($event.value)">
+                <mat-option *ngFor="let language of supportedLanguages" [value]="language.value">
+                    {{ language.label }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions class="app-buttons action-buttons mb-4">
+    <button mat-flat-button class="mx-1 outlined-button" mat-dialog-close data-testid="mabl-close-language-modal-btn">
+        <span class="d-flex align-items-center">{{'CLOSE' | translate}}<i class="material-icons">close</i></span>
+    </button>
+    <button mat-button class="filled-button save-btn px-2 mx-2" (click)="onSave()" data-testid="mabl-save-language-btn">{{'SAVE' | translate}}</button>
+</mat-dialog-actions>

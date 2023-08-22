@@ -1,0 +1,135 @@
+{
+  "data": [
+    {
+      "code": "Site 10",
+      "name": "Test Site",
+      "timezone": "Europe/Lisbon",
+      "geo-location": {
+        "hierarchy": "Europe/Portugal/Porto",
+        "coordinates": {
+          "latitude": -7.31054,
+          "longitude": 107.77903
+        }
+      },
+      "labels": [
+        "TVC"
+      ],
+      "exit-doors": [
+        {
+          "id": 1,
+          "name": "Main Exit"
+        }
+      ]
+    },
+    {
+      "code": "Site 11",
+      "name": "Site Aveiro",
+      "timezone": "Europe/Lisbon",
+      "geo-location": {
+        "hierarchy": "Europe/Portugal/Aveiro",
+        "coordinates": {
+          "latitude": 40.0792114,
+          "longitude": 124.3337947
+        }
+      },
+      "labels": [
+        "TVC"
+      ],
+      "exit-doors": [
+        {
+          "id": 1,
+          "name": "Main Exit"
+        },
+        {
+          "id": 2,
+          "name": "Main Exit 1"
+        }
+      ]
+    },
+    {
+      "code": "Site 12",
+      "name": "Site Madrid",
+      "timezone": "Europe/Madrid",
+      "geo-location": {
+        "hierarchy": "Europe/Spain/Madrid",
+        "coordinates": {
+          "latitude": 39.8230099,
+          "longitude": 119.4891595
+        }
+      },
+      "labels": [],
+      "exit-doors": []
+    },
+    {
+      "code": "Site 13",
+      "name": "Site Barcelona",
+      "timezone": "Europe/Madrid",
+      "geo-location": {
+        "hierarchy": "Europe/Spain/Barcelona",
+        "coordinates": {
+          "latitude": -27.4308908,
+          "longitude": -65.6147813
+        }
+      },
+      "labels": [],
+      "exit-doors": [
+        {
+          "id": 1,
+          "name": "Main Exit"
+        },
+        {
+          "id": 2,
+          "name": "Main Exit 1"
+        }
+      ]
+    },
+    {
+      "code": "Site 14",
+      "name": "Braga",
+      "timezone": "Europe/Lisbon",
+      "geo-location": {
+        "hierarchy": "Europe/Portugal/Lisbon",
+        "coordinates": {
+          "latitude": 40.88222,
+          "longitude": 111.715
+        }
+      },
+      "labels": [
+        "TVC",
+        "Flagship"
+      ],
+      "exit-doors": [
+        {
+          "id": 1,
+          "name": "Main Exit"
+        }
+      ]
+    },
+    {
+      "code": "Site 15",
+      "name": "Test Site",
+      "timezone": "Europe/Lisbon",
+      "geo-location": {
+        "hierarchy": "Europe/Portugal/Braga",
+        "coordinates": {
+          "latitude": 41.126912,
+          "longitude": -7.3592019
+        }
+      },
+      "labels": [
+        "TVC",
+        "Flagship"
+      ],
+      "exit-doors": [
+        {
+          "id": 1,
+          "name": "Main Exit"
+        },
+        {
+          "id": 2,
+          "name": "Main Exit 1"
+        }
+      ]
+    }
+  ]
+}

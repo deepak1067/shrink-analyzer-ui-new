@@ -1,0 +1,72 @@
+[
+  {
+    "site-code": "Site 10",
+    "shrink-event-count": 122,
+    "shrink-item-ratio": 0.28,
+    "bulk-event-ratio": 0.3,
+    "shrink-event-trend": -942.42
+  },
+  {
+    "site-code": "Site 11",
+    "shrink-event-count": 74,
+    "shrink-item-ratio": 0.97,
+    "bulk-event-ratio": 0.53,
+    "shrink-event-trend": 916.69
+  },
+  {
+    "site-code": "Site 12",
+    "shrink-event-count": 351,
+    "shrink-item-ratio": 0.56,
+    "bulk-event-ratio": 0.4,
+    "shrink-event-trend": -807.4
+  },
+  {
+    "site-code": "Site 13",
+    "shrink-event-count": 461,
+    "shrink-item-ratio": 0.75,
+    "bulk-event-ratio": 0.12,
+    "shrink-event-trend": -726.9
+  },
+  {
+    "site-code": "Site 14",
+    "shrink-event-count": 570,
+    "shrink-item-ratio": 0.61,
+    "bulk-event-ratio": 0.04,
+    "shrink-event-trend": -245.2
+  },
+  {
+    "site-code": "Site 15",
+    "shrink-event-count": 413,
+    "shrink-item-ratio": 0.37,
+    "bulk-event-ratio": 0.31,
+    "shrink-event-trend": -745.15
+  },
+  {
+    "site-code": "Site 10",
+    "shrink-event-count": 193,
+    "shrink-item-ratio": 0.47,
+    "bulk-event-ratio": 0.47,
+    "shrink-event-trend": -207.71
+  },
+  {
+    "site-code": "Site 11",
+    "shrink-event-count": 259,
+    "shrink-item-ratio": 0.36,
+    "bulk-event-ratio": 0.62,
+    "shrink-event-trend": 725.28
+  },
+  {
+    "site-code": "Site 12",
+    "shrink-event-count": 413,
+    "shrink-item-ratio": 0.43,
+    "bulk-event-ratio": 0.19,
+    "shrink-event-trend": 330.06
+  },
+  {
+    "site-code": "Site 13",
+    "shrink-event-count": 432,
+    "shrink-item-ratio": 0.06,
+    "bulk-event-ratio": 0.02,
+    "shrink-event-trend": -29.97
+  }
+]

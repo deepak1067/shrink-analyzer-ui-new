@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-between align-items-center filter-container mt-4">
+    <div>
+        <h1 data-testid="mabl-filter-text">{{'FILTER' | translate}}</h1>
+    </div>
+    <div class="d-flex justify-content-end p-4 app-buttons">
+        <button mat-flat-button class="mx-1 filled-button" (click)="clearFilter()" data-testid="mabl-clear-filter-button">
+            {{ "Clear Filter" | translate |uppercase }}
+        </button>
+        <button mat-flat-button class="mx-1 filled-button" type="submit"
+            [disabled]="(filterForm.get('startDate')?.value && !filterForm.get('endDate')?.value ) || filterForm.get('endTime')?.errors"
+            (click)="onFormSubmit()" data-testid="mabl-apply-filter-button">
+            {{ "Apply Filter" | translate |uppercase }}
+        </button>
+        <button mat-flat-button class="mx-1 outlined-button" (click)="closeDialog()" data-testid="mabl-close-filter-button">
+            <span class="d-flex align-items-center">{{"Close" | translate}}<i class="material-icons">close</i></span>
+        </button>
+    </div>
+</div>
+<div class="filter-container d-flex col-12 justify-content-around mt-5 mb-5">
+    <div class="col-9">
+        <form [formGroup]="filterForm">
+            <div class="chip-list-wrapper">
+            </div>
+            <div class="row">
+                <div class="col-4 pe-5">
+                    <div>
+                        <mat-label class="form-label" data-testid="mabl-date-label">{{'Date' | translate}}</mat-label>
+                    </div>
+                    <mat-form-field class="date-picker" data-testid="mabl-filter-datepicker">
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate formControlName="startDate" [placeholder]="'Start Date' | translate"
+                                [readOnly]="true" />
+                            <input matEndDate formControlName="endDate" [placeholder]="'End Date' | translate"
+                                [readOnly]="true" />
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker [disabled]="false"></mat-date-range-picker>
+                    </mat-form-field>
+                    <mat-error class="error-message w-100" *ngIf="(filterForm.get('endDate')?.errors && filterForm.get('endDate')?.touched )
+                          || (filterForm.get('startDate')?.errors && filterForm.get('startDate')?.touched)">{{'Please select start and end Date' | translate}}</mat-error>
+                </div>
+                <div class="col-4">
+                    <app-auto-complete-field
+                        [label]="'Site ID' | translate"
+                        [siteData]="siteCodes"
+                        [placeholder]="'select site code..' | translate"
+                        [fieldName]="$any(filterForm).get('siteCode')"
+                        (sendSelectedValues)="sendSelectedValues($event)"
+                        [selectedValues]="siteCodesSelected"
+                    ></app-auto-complete-field>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <mat-label class="form-label" data-testid="mabl-site-hierarchy-label">{{'Site Hierarchy' | translate}}</mat-label>
+                    </div>
+                    <app-hierarchy-field class="hierarchy-field" 
+                        [treeData]="transformedSiteHierarchy"
+                        [transSiteHierarchySelected]="transSiteHierarchySelected"
+                        [fieldName]="$any(filterForm).get('hierarchy')"
+                        (sendTransSiteHierarchySelected)="sendSelectedHierarchy($event)"
+                    ></app-hierarchy-field>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <mat-label class="form-label" data-testid="mabl-hours-label">{{'Hours' | translate}}</mat-label>
+                    </div>
+                    <mat-slider class="example-margin hour-slider" [max]="24" [min]="0" [step]="1" [discrete]="true">
+                        <input formControlName="startTime" matSliderStartThumb>
+                        <input formControlName="endTime" matSliderEndThumb>
+                    </mat-slider>
+                    <mat-error class="error-message w-100" *ngIf="(filterForm.get('endTime')?.errors)">{{'Minimum hour duration should be 1' | translate}}</mat-error>
+                </div>
+                <div class="col-4">
+                    <app-auto-complete-field 
+                        [label]="'Site Name' | translate"
+                        [siteData]="siteNames"
+                        [placeholder]="'select site label..' | translate"
+                        [fieldName]="$any(filterForm).get('siteName')"
+                        (sendSelectedValues)="sendSelectedValues($event)"
+                        [selectedValues]="siteNamesSelected"
+                        ></app-auto-complete-field>
+                </div>
+                <div class="col-4">
+                    <app-auto-complete-field    
+                        [label]="'Site Label' | translate"
+                        [siteData]="siteLabels"
+                        [placeholder]="'select site label..' | translate"
+                        [fieldName]="$any(filterForm).get('siteLabel')"
+                        (sendSelectedValues)="sendSelectedValues($event)"
+                        [selectedValues]="siteLabelsSelected"
+                    ></app-auto-complete-field>
+                </div>
+                <div class="col-12">
+                    <div class="col-4 float">
+                        <div>
+                            <div>
+                                <mat-label class="form-label" data-testid="mabl-event-label">{{'Event Label(s)' |
+                                    translate}}</mat-label>
+                            </div>
+                            <mat-form-field class="fields">
+                                <mat-select formControlName="itemLabel" multiple [placeholder]="'If any value' |translate">
+                                    <mat-option *ngFor="let eventLabel of eventLabels"
+                                        [value]="eventLabel">{{eventLabel | translate}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+        <mat-slide-toggle color="primary" (change)="onChange($event)" [(ngModel)]="isChecked"
+            data-testid="mabl-exclude-in-catalog-toggle"></mat-slide-toggle>
+        <span class="fw-bold form-label mt-2" data-testid="mabl-exclude-in-catalog-label">{{'Exclude Not in Catalog Product Code' | translate}}</span>
+    </div>
+</div>

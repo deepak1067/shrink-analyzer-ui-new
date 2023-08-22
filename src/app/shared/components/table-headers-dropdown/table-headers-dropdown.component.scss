@@ -1,0 +1,14 @@
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    height: 35px;
+    padding: 4px 8px;
+    width: 230px;
+}
+
+:host ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+}

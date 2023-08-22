@@ -1,0 +1,75 @@
+<div class="px-5">
+<div class="d-flex justify-content-between align-items-center p-4">
+    <div class="d-flex flex-wrap mt-3">
+        <div class="d-flex">
+        <h1 class="page-title mt-2 me-1" data-testid="mabl-page-title">{{ pageTitle | translate }}
+            <span data-testid="mabl-bulk-event-count" *ngIf="pageTitle === 'BULK SHRINK EVENTS' && totalBulkEvent !== undefined ">-&nbsp;{{totalBulkEvent}}</span>
+        </h1> 
+        </div>
+        <div class="d-flex mt-2" *ngIf="pageTitle === 'SHRINK VISIBILITY' || pageTitle === 'MANAGEMENT PERFORMANCE'">
+            <button class="refresh-button" (click)="refreshData()" data-testid="mabl-refresh-button">
+                <img src="assets/svg/Refresh.svg" alt="refresh_icon" height="40" width="40">
+            </button>
+            <div class="last-refreshed me-2" data-testid="mabl-last-refresh-label">
+                {{'Last Shrink Data Refreshed' | translate}}
+                <p class="last-refreshed-time">
+                    <span>{{ lastShrinkDataRefreshed }}</span>
+                </p>
+            </div>
+            <div class="vertical-line"></div>
+            <div class="last-uploaded" data-testid="mabl-last-pos-label">
+                {{'Last POS Uploaded' | translate}}
+                <p class="last-pos-time">
+                    <span>{{ lastPosUploaded }}</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="d-flex align-items-end ">
+        <div class="d-flex justify-content-end align-items-center flex-wrap">
+            <div class="app-buttons mt-3" *ngIf="showContextButton">
+                <button mat-flat-button class="mx-1 filled-button" data-testid="mabl-context-button" (click)="sendEventContext()">
+                    <span class="d-flex align-items-center">
+                        <i class="material-icons">autorenew</i>&nbsp;
+                        <img src="assets/svg/plusMinus.svg" alt="increment_icon" height="16" width="16">&nbsp;{{'2Min' | translate}}&nbsp;</span>
+                </button>
+            </div>
+            <div class="d-flex mt-4">
+                <div class="last-refreshed me-2">
+                    <p class="mb-0" data-testid="mabl-filter-start-date-label">{{'Filter Start Date' | translate}}</p>
+                    <p class="last-refreshed-time" data-testid="mabl-filter-start-date">
+                        <span>{{ startDate }}</span>
+                    </p>
+                </div>
+                <div class="vertical-line"></div>
+                <div class="last-uploaded" >
+                    <p class="mb-0" data-testid="mabl-filter-end-date-label"> {{ 'Filter End Date' | translate}}</p>
+                    <p class="last-pos-time" data-testid="mabl-filter-end-date">
+                        <span>{{ endDate }}</span>
+                    </p>
+                </div>
+            </div>
+           <div class="d-flex flex-column">
+            <div>
+                <span class="no-filter-text" *ngIf="!filterApplied" data-testid="mabl-no-filter-label">{{ 'No filter applied' | translate}}</span>
+            </div>
+            <div class="d-flex">
+                <button mat-flat-button class="filter-button d-flex align-items-center ms-3" (click)="onFilterClick()" data-testid="mabl-app-filter-button">
+                    <span class="d-flex align-items-center">
+                        <img src="assets/svg/filter.svg" alt="filter" height="16" width="16" class="me-2">
+                        {{'FILTER' | translate}}
+                        <i class="material-icons ms-2">expand_more</i></span>
+                </button>
+                <div class="filter-applied-icon d-flex align-items-center ps-3 pe-2">
+                    <img *ngIf="!filterApplied" data-testid="mabl-no-filter-icon" src="assets/svg/Filter_NA.svg" alt="no-filter" height="20" width="20">
+                    <img *ngIf="filterApplied" data-testid="mabl-filter-applied-icon" src="assets/svg/filter_applied.svg" alt="filter" height="20" width="20">
+                </div>
+            </div>
+            
+           </div>
+           
+        </div>
+    </div>
+    </div>
+</div>

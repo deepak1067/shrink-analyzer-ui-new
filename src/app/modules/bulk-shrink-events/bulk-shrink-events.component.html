@@ -1,0 +1,29 @@
+<div class="px-5 mb-4">
+    <mat-card class="px-2 py-1 mx-4" data-testid="mabl-bulk-shrink-card">
+        <div class="py-4">
+            <div class="d-flex mx-5 justify-content-end">
+              <div class="me-4">
+                <app-table-headers-dropdown 
+                  [tableHeaders]="bulkColumnDef"
+                  [allTableHeaders]="allTableHeaders"
+                  (updatedHeaders)="setHeadersForBulkShrink($event)">
+                </app-table-headers-dropdown>
+              </div>
+                <button class="downloadButton" (click)="downloadCsvFile()" data-testid="mabl-bulk-shrink-download-btn">
+                    <i class="material-icons icon">download</i>
+                </button>
+            </div>
+        <ng-container *ngIf="!isLoading; else showLoading">
+            <app-tabular-view [tableRows]="bulkShrinkEvents" [tableHeaders]="bulkColumnDef">
+           </app-tabular-view>
+        </ng-container>
+        <ng-template #showLoading>
+          <div class="spinner mt-5" data-testid="mabl-bulk-shrink-loader">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        </ng-template>
+        </div>
+    </mat-card>
+</div>

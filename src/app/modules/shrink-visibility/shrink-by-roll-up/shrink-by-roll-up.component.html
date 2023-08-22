@@ -1,0 +1,48 @@
+<mat-card class="mt-5 px-4 pb-2" data-testid="mabl-rollup-card">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="pt-2">
+      <mat-label class="label me-2 fw-bold" data-testid="mabl-rollup-label">{{'Rollup by:' | translate}}</mat-label>
+      <mat-form-field data-testid="mabl-rollup-by-dropdown">
+        <mat-select
+          class="select"
+          [(ngModel)]="selectedValue"
+          name="rollup"
+          (valueChange)="filterByProductAttribute($event)"
+        >
+          <mat-option
+            class="options"
+            *ngFor="let attribute of productAttributes"
+            [value]="attribute"
+          >
+            {{ attribute }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="me-4 mt-4" *ngIf="viewType === 'table'">
+        <app-table-headers-dropdown
+          [tableHeaders]="rollUpColumnDef"
+          [allTableHeaders]="allTableHeaders"
+          (updatedHeaders)="setHeadersForShrinkByRollUp($event)">
+        </app-table-headers-dropdown>
+    </div>
+      <app-toggle-button
+        (toggleValue)="onToggleClick($event)"
+        (onDownload)="downloadFile($event)"
+        [viewType]="viewType"
+      ></app-toggle-button>
+    </div>
+  </div>
+  <hr class="m-0" />
+	<div *ngIf="viewType === 'chart'" class="container mt-5 col-xxl-8">
+		<app-roll-up-bar-chart [barChartData]="shrinkEventsByProductAttributes"
+		                       [selected]="selectedValue"
+		                       (sendChartId)="getChartId($event)">
+		</app-roll-up-bar-chart>
+	</div>
+<div *ngIf="viewType === 'table'" class="container mt-5 col-xxl-10">
+  <app-tabular-view [tableRows]="shrinkEventsByProductAttributes" [tableHeaders]="rollUpColumnDef">
+  </app-tabular-view>
+</div>
+</mat-card>

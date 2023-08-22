@@ -1,0 +1,13 @@
+<div class="px-5 mx-3">
+    <div class="mx-3 row col-xl-10 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-between">
+        <mat-card class="me-3 mt-4 col-xl-3 col-lg-5 col-md-5 col-sm-10 col-10" [attr.data-testid]="'mabl-'+ card.title+ '-card'" *ngFor="let card of cards">
+            <mat-card-header class="justify-content-center">
+              <mat-card-title class="title">{{card.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="d-flex justify-content-center mt-3 mb-3">
+                <span class="card-count">{{card.count}}</span>
+            </mat-card-content>
+          </mat-card>
+    </div>
+    <app-login-events-card></app-login-events-card>
+</div>

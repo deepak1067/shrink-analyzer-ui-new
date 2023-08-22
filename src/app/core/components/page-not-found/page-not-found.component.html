@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="error-page d-flex align-items-center justify-content-center vh-100">
+  <span class="text-center">
+    <img class="mx-2" data-testid="mabl-page-not-found-image" src="../../../../assets/svg/Error_img.svg" alt="Error Page">
+    <p class="error-heading" data-testid="mabl-page404-label">404</p>
+    <p class="error-sub-heading" data-testid="mabl-page-not-found-label">{{'Page Not Found' | translate}}</p>
+    <button class="button" (click)="goToDashboard()" data-testid="mabl-go-to-dashboard-btn">{{'Go to Dashboard' | translate}}</button>
+  </span>
+</div>

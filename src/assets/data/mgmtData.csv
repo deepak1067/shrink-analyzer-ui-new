@@ -1,0 +1,6 @@
+user,no_of_logins,no_of_validated_events,percent_validated_events,total_duration,avg_duration,no_of_abandoned_sessions
+Alice,10,8,80.0,240,30,2
+Bob,15,12,80.0,360,30,3
+Charlie,8,6,75.0,180,30,1
+David,20,18,90.0,540,30,2
+Eve,12,10,83.3,300,30,1

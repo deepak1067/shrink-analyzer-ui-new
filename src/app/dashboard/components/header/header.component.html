@@ -1,0 +1,31 @@
+<header>
+  <mat-toolbar class="mainToolbar">
+    <div class="logobox">
+      <img src="assets/images/Sensormatic%20IQ%20logo.jpg" alt="logo" data-testid="mabl-sensormatic-logo"/>
+      <span class="divider">|</span>
+      <span class="logo-title text-uppercase fs-4" data-testid="mabl-shrink-analyzer-label">{{'Shrink Analyzer' | translate}}</span>
+    </div>
+    <span class="toolbar-spacer"></span>
+    <div class="user-profile">
+      <div *ngIf="userInfo.displayName" class="user-profile-image" data-testid="mabl-user-image">
+        {{ getShortName(userInfo.displayName) | uppercase}}
+      </div>
+      <div mat-icon-button [matMenuTriggerFor]="menu" class="user-profile-name" data-testid="mabl-user-display-name">
+        <span>{{ userInfo.displayName | titlecase}}</span>
+        <mat-icon aria-hidden="false" aria-label="down arrow icon" data-testid="mabl-menu-arrow-down"
+          >keyboard_arrow_down</mat-icon
+        >
+      </div>
+      <mat-menu #menu="matMenu" class="mt-3 ms-4 menu" data-testid="mabl-user-menu">
+
+        <button mat-menu-item  (click)="openUserPreferences()" data-testid="mabl-user-preference-button">
+          <span>{{'User preferences' | translate}}</span>
+        </button>
+
+        <button mat-menu-item (click)="logout()" data-testid="mabl-logout-button">
+          <span>{{'Log Out' | translate}}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</header>

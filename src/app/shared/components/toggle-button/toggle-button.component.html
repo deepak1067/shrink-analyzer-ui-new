@@ -1,0 +1,19 @@
+<div class="d-flex">
+<mat-button-toggle-group (change)="onToggle(viewType)" [(ngModel)]="viewType">
+    <mat-button-toggle value="map" *ngIf="showMapIcon" data-testid="mabl-map-view-button">
+        <i class="material-icons icon">public</i>
+    </mat-button-toggle>
+
+    <mat-button-toggle value="chart" data-testid="mabl-chart-view-button">
+        <i class="material-icons icon">bar_chart</i>
+    </mat-button-toggle>
+
+    <mat-button-toggle value="table" data-testid="mabl-table-view-button">
+        <i class="material-symbols-outlined icon">table_chart</i>
+    </mat-button-toggle>
+   
+  </mat-button-toggle-group>  
+  <mat-button-toggle class="ms-4 download-button" (click)="onDownloadClick()" data-testid="mabl-shrink-event-download-button">
+    <i class="material-icons icon">download</i>
+  </mat-button-toggle> 
+</div>

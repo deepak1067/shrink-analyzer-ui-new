@@ -1,0 +1,63 @@
+<mat-form-field class="hierarchy-field">
+        <mat-chip-grid #chipGrid>
+            <mat-chip-row *ngFor="let node of checklistSelection.selected" (removed)="removeSelected(node)">
+              {{node.item}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input class="ms-2" 
+            [placeholder]="checklistSelection.selected.length < 1 ? 'Select Hierarchy..':'' | translate"
+            #autoTreeInput 
+            [matChipInputFor]="chipGrid" 
+            [matAutocomplete]="auto" 
+            [formControl]="fieldName"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (input)="filterChanged($event.target)"/>
+        <mat-autocomplete #auto="matAutocomplete" (opened)="opened()">
+          <mat-option disabled hidden>Select Item</mat-option>
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node
+              *matTreeNodeDef="let node"
+              matTreeNodeToggle
+              matTreeNodePadding
+            >
+              <button mat-icon-button disabled></button>
+              <mat-checkbox
+                color="primary"
+                class="checklist-leaf-node"
+                [checked]="checklistSelection.isSelected(node)"
+                (change)="todoLeafItemSelectionToggle(node)"
+              >
+                {{ node.item }}
+              </mat-checkbox>
+            </mat-tree-node>
+      
+            <mat-tree-node
+              class="node"
+              *matTreeNodeDef="let node; when: hasChild"
+              matTreeNodePadding
+            >
+              <button
+                mat-icon-button
+                matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.filename"
+              >
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                </mat-icon>
+              </button>
+              <mat-checkbox
+                color="primary"
+                [checked]="descendantsAllSelected(node)"
+                [indeterminate]="descendantsPartiallySelected(node)"
+                (change)="todoItemSelectionToggle(node)"
+              >
+                {{ node.item }}
+              </mat-checkbox>
+            </mat-tree-node>
+          </mat-tree>
+        </mat-autocomplete>
+      </mat-form-field>
+      

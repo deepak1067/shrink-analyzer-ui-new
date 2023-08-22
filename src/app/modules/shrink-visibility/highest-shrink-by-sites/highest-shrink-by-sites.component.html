@@ -1,0 +1,56 @@
+<mat-card class="mt-5 p-4" data-testid="mabl-highest-shrink-card">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h4 class="fw-bold" data-testid="mabl-highest-shrink-label">{{'HIGHEST SHRINK BY SITES'| translate}}</h4>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="me-4" *ngIf="viewType === 'table'">
+                <app-table-headers-dropdown
+                  [tableHeaders]="eventColumnDef"
+                  [allTableHeaders]="allTableHeaders"
+                  (updatedHeaders)="setHeadersForHighestShrink($event)">
+                </app-table-headers-dropdown>
+            </div>
+            <div>
+                <app-toggle-button
+                (toggleValue)="onToggleClick($event)"
+                (onDownload)="downloadFile($event)"
+                [viewType]="viewType"
+                [showMapIcon]="true"></app-toggle-button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="viewType === 'table'">
+        <app-tabular-view [tableRows]="shrinkEventsBySite"
+            [tableHeaders]="eventColumnDef"></app-tabular-view>
+    </div>
+    <div *ngIf="viewType === 'map'">
+        <ng-container *ngIf="!isLoading; else showLoading">
+            <app-map-view [mapData]="mapData"
+            (mapId)="getMapId($event)"></app-map-view>
+        </ng-container>
+        <ng-template #showLoading>
+            <div class="spinner mt-5" data-testid="mabl-map-loder">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
+        </ng-template>
+        
+    </div>
+    <div *ngIf="viewType === 'chart'">
+        <div *ngIf="isLoading" class="text-center mt-5" data-testid="mabl-chart-loader">
+            <div class="spinner-border text-primary " role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    
+        <div *ngIf="!isLoading">
+            <div class="container mt-5 col-xxl-8">
+                <app-highest-shrink-bar-chart [barChartData]="shrinkEventsBySite"
+                    (sendChartId)="getChartId($event)">
+                </app-highest-shrink-bar-chart>
+            </div>
+        </div>
+    </div>
+</mat-card>

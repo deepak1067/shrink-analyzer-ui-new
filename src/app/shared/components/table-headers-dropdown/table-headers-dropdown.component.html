@@ -1,0 +1,9 @@
+<mat-form-field data-testid="mabl-table-headers-dropdown">
+      <mat-select multiple #matSelect (selectionChange)="onColumnSelectionChange($event)"
+       [(value)]="newSelectedTableHeaders">
+        <mat-option *ngFor="let header of allTableHeaders" [value]="header.colId" 
+        [disabled]="newSelectedTableHeaders.length <= 2 && newSelectedTableHeaders.includes(header.colId || '')">
+          {{ header.headerName }}
+        </mat-option>
+      </mat-select>
+</mat-form-field>
